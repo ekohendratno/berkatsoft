@@ -65,7 +65,11 @@
                 <li><a class="nav-link scrollto" href="/film/nowplaying">SEDANG DIPUTAR</a></li>
                 <li><a class="nav-link scrollto" href="/film/upcoming">MEDATANG</a></li>
                 <li><a class="nav-link scrollto" href="/film/toprating">TOP RATING</a></li>
+                @if(Auth::check())
+                <li><a class="getstarted getstarted2 scrollto" href="/posts">DASHBOARD</a></li>
+                @else
                 <li><a class="getstarted getstarted1 scrollto" href="/member">MASUK MEMBER</a></li>
+                @endif
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>

@@ -63,7 +63,7 @@ class MemberController extends Controller
     {
         Auth::logout();
 
-        return redirect('/member')->with("succes","Berhasil logout!");
+        return redirect('/member')->with("success","Berhasil logout!");
     }
 
     /**

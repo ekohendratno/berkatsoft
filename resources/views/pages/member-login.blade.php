@@ -11,6 +11,16 @@
 
             <div class="row justify-content-center mt-5">
                 <div class="col-md-6 col-md-offset-2">
+
+
+                @if(Auth::check())
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <p>Kamu masih login</p>
+                        </div>
+                    </div>
+                    <br />
+                @else
                     <div class="card">
                         <div class="card-body">
 
@@ -38,6 +48,7 @@
                     <input type="button" name="previous-step" class="btn btn-warning float-end" style="margin-right: 4px;" value="Lupa Akun" />
 
 
+                    @endif
 
                 </div>
             </div>
@@ -77,7 +88,7 @@
                 if(response.success){
                     window.location.replace("/posts");
                 }else{
-                    
+
                 }
 
 

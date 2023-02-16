@@ -31,6 +31,7 @@
                     <div class="card-body">
 
                         <a href="javascript:void(0)" class="btn btn-success mb-2" id="btn-create-post">TAMBAH</a>
+                        <a href="/posts/create" class="btn btn-warning mb-2">GET FROM THEMOVIEDB.ORG</a>
 
 
                         <table class="table table-bordered table-striped">

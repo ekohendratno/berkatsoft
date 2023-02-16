@@ -136,11 +136,11 @@ class PostController extends Controller
     public function create()
     {
 
-        $response = Http::get(config('services.tmdb.endpoint').'movie/popular', [
+        $response = Http::get(config('services.tmdb.endpoint') . 'movie/popular', [
             'api_key' => config('services.tmdb.api')
         ]);
 
-        if($response->ok()) {
+        if ($response->ok()) {
             $data = $response->json();
 
             foreach ($data['results'] as $d) {
@@ -148,7 +148,7 @@ class PostController extends Controller
                 Film::create([
                     'adult' => $d['adult'],
                     'backdrop_path' => $d['backdrop_path'],
-                    'genre_ids' => json_encode( $d['genre_ids'] ),
+                    'genre_ids' => json_encode($d['genre_ids']),
                     'original_id' => $d['id'],
                     'original_language' => $d['original_language'],
                     'original_title' => $d['original_title'],
@@ -161,11 +161,12 @@ class PostController extends Controller
                     'vote_average' => $d['vote_average'],
                     'vote_count' => $d['vote_count'],
                 ]);
-
             }
+
+
+            return redirect('/posts')->with("success", "Berhasil ambil data!");
         } else {
             echo "Failed to fetch popular movies.";
         }
     }
-
 }
