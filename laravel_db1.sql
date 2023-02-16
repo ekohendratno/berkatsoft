@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 16 Feb 2023 pada 07.24
+-- Waktu pembuatan: 16 Feb 2023 pada 10.59
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.0
 
@@ -66,20 +66,6 @@ CREATE TABLE `films` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `members`
---
-
-CREATE TABLE `members` (
-  `member_id` bigint(20) UNSIGNED NOT NULL,
-  `member_name` varchar(255) NOT NULL,
-  `member_password` varchar(255) NOT NULL,
-  `member_email` varchar(255) NOT NULL,
-  `member_last_active` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `migrations`
 --
 
@@ -98,8 +84,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2023_02_15_032127_create_members_table', 1),
-(6, '2023_02_16_031610_create_films_table', 1);
+(5, '2023_02_16_031610_create_films_table', 1);
 
 -- --------------------------------------------------------
 
@@ -150,6 +135,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@mail.com', NULL, '$2y$10$.X1uoed8d4XZx9ijH2NzIeN4P2hkoHyt.S5Q2wBTJKW.T1r7hwQr.', NULL, NULL, NULL);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -165,12 +157,6 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `films`
   ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `members`
---
-ALTER TABLE `members`
-  ADD PRIMARY KEY (`member_id`);
 
 --
 -- Indeks untuk tabel `migrations`
@@ -216,16 +202,10 @@ ALTER TABLE `films`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `members`
---
-ALTER TABLE `members`
-  MODIFY `member_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -237,7 +217,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
