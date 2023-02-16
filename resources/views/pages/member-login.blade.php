@@ -9,7 +9,7 @@
     <section class="section-bg">
         <div class="container">
 
-            <form class="form-horizontal" role="form" method="POST" action="/signin">
+            <form class="form-horizontal" role="form" method="GET" action="/posts">
 
                 <div class="row justify-content-center mt-5">
                     <div class="col-md-6 col-md-offset-2">
@@ -19,14 +19,14 @@
                                 <p>Masukkan informasi login dengan benar</p>
                                 <div class="mb-4">
                                     <label for="member_email" class="form-label">Username/Email</label>
-                                    <input type="text" class="form-control" id="member_email" />
+                                    <input type="text" class="form-control" id="member_email" value="admin@mail.com" />
                                     <span class="invalid-feedback" role="alert">
                                         <strong>Username tidak boleh dikosongi.</strong>
                                     </span>
                                 </div>
                                 <div class="mb-4">
                                     <label for="member_password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="member_password" />
+                                    <input type="password" class="form-control" id="member_password" value="admin" />
                                     <span class="invalid-feedback" role="alert">
                                         <strong>Katasandi tidak boleh dikosongi.</strong>
                                     </span>

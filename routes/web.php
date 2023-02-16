@@ -36,3 +36,4 @@ Route::post('/signin', [MemberController::class, 'signin']);
 
 
 Route::get('/post/create', [PostController::class,'create']);
+Route::resource('/posts', PostController::class);
