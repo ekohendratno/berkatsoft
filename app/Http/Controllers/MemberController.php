@@ -2,14 +2,38 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Member;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Hash;
+use Session;
 
 class MemberController extends Controller
 {
+    public function signin(Request $request)
+    {
+        $request->validate([
+            'member_email' => 'required|email',
+            'member_password' => 'required',
+        ]);
+
+        $credentials = $request->only('member_email', 'member_password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('dashboard')->withSuccess('Signed in');
+        }
+
+        return redirect("/member/index")->withError('Login details are not valid');
+    }
+
+    public function signout()
+    {
+        Session::flush();
+        Auth::logout();
+
+        return redirect('login');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,50 +45,31 @@ class MemberController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'member_name' => 'required',
+            'member_password' => 'required',
+            'member_email' => 'required|email',
+        ]);
 
-     public function store(Request $request)
-     {
-         //define validation rules
-         $validator = Validator::make($request->all(), [
-             'member_name'     => 'required',
-             'member_password'   => 'required',
-             'member_email'   => 'required',
-         ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()], 400);
+        }
 
-         //check if validation fails
-         if ($validator->fails()) {
-             return response()->json($validator->errors(), 422);
-         }
+        $data = Member::create($request->only(['member_name', 'member_password', 'member_email']));
 
-         //create post
-         $data = Member::create([
-             'member_name'     => $request->member_name,
-             'member_password'   => $request->member_password,
-             'member_email'   => $request->member_email,
-         ]);
-
-         //return response
-         return response()->json([
-             'success' => true,
-             'message' => 'Data Berhasil Disimpan!',
-             'data'    => $data
-         ]);
-     }
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Berhasil Disimpan!',
+            'data' => $data
+        ], 201);
+    }
 
     /**
      * Display the specified resource.
