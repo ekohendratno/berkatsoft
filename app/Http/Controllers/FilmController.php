@@ -9,7 +9,7 @@ class FilmController extends Controller
 {
     public function index()
     {
-        $films = Film::orderBy('release_date')->get();
+        $films = Film::orderBy('release_date')->paginate(10);
 
         return view('pages.film', compact('films'));
     }
@@ -19,26 +19,26 @@ class FilmController extends Controller
     {
 
         if($id == "populer"){
-            $films = Film::orderBy('release_date')->get();
+            $films = Film::orderBy('release_date')->paginate(10);
 
             return view('pages.film', compact('films'));
         }elseif($id == "nowplaying"){
-            $films = Film::orderBy('release_date')->get();
+            $films = Film::orderBy('release_date')->paginate(10);
 
             return view('pages.film', compact('films'));
         }elseif($id == "upcoming"){
-            $films = Film::orderBy('release_date')->get();
+            $films = Film::orderBy('release_date')->paginate(10);
 
             return view('pages.film', compact('films'));
         }elseif($id == "toprating"){
-            $films = Film::orderBy('release_date')->get();
+            $films = Film::orderBy('release_date')->paginate(10);
 
             return view('pages.film', compact('films'));
         }else{
 
 
             $film = Film::where('original_id', $id)->first();
-            $films = Film::orderBy('release_date')->limit(10)->get();
+            $films = Film::orderBy('release_date')->limit(10)->paginate(10);
 
             return view('pages.film-detail',compact('film','films'));
 
