@@ -31,7 +31,8 @@ Route::get('/film/upcoming', [FilmController::class,'upcoming']);
 Route::get('/film/toprating', [FilmController::class,'toprating']);
 
 Route::get('/member', [MemberController::class,'index']);
-Route::post('/signin', [MemberController::class, 'signin']);
+Route::post('/member/signin', [MemberController::class, 'signin']);
+Route::get('/member/signout', [MemberController::class, 'signout']);
 
 
 

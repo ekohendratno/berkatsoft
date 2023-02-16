@@ -20,7 +20,7 @@
 
 <nav class="navbar navbar-light bg-light justify-content-between">
   <a class="navbar-brand">MASTER FILM</a>
-  <a href="/" class="btn btn-danger mb-2">LOGOUT</a>
+  <a href="/member/signout" class="btn btn-danger mb-2">LOGOUT</a>
 </nav>
 
     <div class="container" style="margin-top: 50px">

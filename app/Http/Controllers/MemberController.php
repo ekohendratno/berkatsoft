@@ -6,37 +6,53 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use Hash;
-use Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\Session\Session;
 
 class MemberController extends Controller
 {
     public function signin(Request $request)
     {
+
+
         $request->validate([
-            'member_email' => 'required',
-            'member_password' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ], [
+            'email.required' => 'Email wajib diisi!',
+            'password.required' => 'Sandi wajib diisi!',
         ]);
-        if (Auth::attempt(['member_email' => $request->member_email, 'member_password' => $request->member_password])) {
+
+        if (Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
+        ])) {
+
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            //return response
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil login!'
+            ]);
         }
 
-        return back()->withErrors([
-            'member_password' => 'Wrong username or password',
+        return response()->json([
+            'success' => false,
+            'message' => 'Gagal login!'
         ]);
+
     }
 
     public function daftar(Request $request)
     {
         $request->validate([
-            'member_email' => 'required',
-            'member_password' => 'required',
+            'email' => 'required',
+            'password' => 'required',
         ]);
 
         $user = new Member([
-            'member_email' => $request->username,
-            'member_password' => $request->password,
+            'email' => $request->username,
+            'password' => $request->password,
         ]);
         $user->save();
 
@@ -45,10 +61,9 @@ class MemberController extends Controller
 
     public function signout()
     {
-        Session::flush();
         Auth::logout();
 
-        return redirect('login');
+        return redirect('/member')->with("succes","Berhasil logout!");
     }
 
     /**
@@ -96,7 +111,6 @@ class MemberController extends Controller
      */
     public function show($id, Request $request)
     {
-
     }
 
     /**
