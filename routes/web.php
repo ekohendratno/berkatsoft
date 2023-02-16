@@ -17,6 +17,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DemoController;
+use App\Http\Controllers\MemberController;
 
 
 Route::get('/demo', [DemoController::class, 'demo'])->name('demo');
@@ -30,5 +31,8 @@ Route::get('/film/upcoming', [FilmController::class,'upcoming']);
 Route::get('/film/toprating', [FilmController::class,'toprating']);
 
 
+Route::resources([
+    'member' => MemberController::class,
+]);
 
 Route::get('/post/create', [PostController::class,'create']);
