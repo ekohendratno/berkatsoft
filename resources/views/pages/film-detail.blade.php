@@ -21,7 +21,7 @@
 
                                 <div class="col-6 col-lg-6">
                                     <div class="card mb-4">
-                                        <img alt="{{ $film->original_title }}" src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{ $film->poster_path }}" class="card-img-top" alt="{{ $film->original_title }}">
+                                        <img alt="{{ $film->original_title }}" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/{{ $film->poster_path }}" class="card-img-top" alt="{{ $film->original_title }}">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $film->original_title }}</h5>
                                             <div>

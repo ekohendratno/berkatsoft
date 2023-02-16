@@ -23,7 +23,7 @@
                                         @forelse ($films as $film)
                                         <div class="col-6 col-lg-6">
                                             <div class="card mb-4">
-                                                <a href="/film/{{ $film->original_id }}"><img src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{ $film->poster_path }}" class="card-img-top" alt="{{ $film->title }}"></a>
+                                                <a href="/film/{{ $film->original_id }}"><img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/{{ $film->poster_path }}" class="card-img-top" alt="{{ $film->title }}"></a>
                                                 <div class="card-body">
                                                     <a href="/film/{{ $film->original_id }}">
                                                         <h5 class="card-title">{{ $film->title }}</h5>

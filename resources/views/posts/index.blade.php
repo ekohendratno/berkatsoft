@@ -18,14 +18,20 @@
 </head>
 <body>
 
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand">MASTER FILM</a>
+  <a href="/" class="btn btn-danger mb-2">LOGOUT</a>
+</nav>
+
     <div class="container" style="margin-top: 50px">
         <div class="row">
             <div class="col-md-12">
-                <h4 class="text-center">MASTER FILM</a></h4>
+                <h4 class="text-center">DAFTAR FILM</a></h4>
                 <div class="card border-0 shadow-sm rounded-md mt-4">
                     <div class="card-body">
 
                         <a href="javascript:void(0)" class="btn btn-success mb-2" id="btn-create-post">TAMBAH</a>
+
 
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -37,7 +43,7 @@
                             <tbody id="table-posts">
                                 @foreach($posts as $post)
                                 <tr id="index_{{ $post->id }}">
-                                    <td>{{ $post->title }}<br/><small>{{ $post->release_date }}</small></td>
+                                    <td>{{ $post->title }}<br/><small><i>{{ $post->original_title }}</i></small><br/><small>{{ $post->release_date }}</small></td>
                                     <td class="text-center">
                                         <a href="javascript:void(0)" id="btn-edit-post" data-id="{{ $post->id }}" class="btn btn-primary btn-sm">EDIT</a>
                                         <a href="javascript:void(0)" id="btn-delete-post" data-id="{{ $post->id }}" class="btn btn-danger btn-sm">DELETE</a>

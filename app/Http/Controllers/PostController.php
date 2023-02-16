@@ -30,8 +30,17 @@ class PostController extends Controller
     {
         //define validation rules
         $validator = Validator::make($request->all(), [
-            'title'     => 'required',
-            'content'   => 'required',
+            'adult'     => 'required',
+            'backdrop_path'   => 'required',
+            'genre_ids'   => 'required',
+            'original_id'   => 'required',
+            'original_language'   => 'required',
+            'original_title'   => 'required',
+            'popularity'   => 'required',
+            'poster_path'   => 'required',
+            'release_date'   => 'required',
+            'title'   => 'required',
+            'video'   => 'required'
         ]);
 
         //check if validation fails
@@ -41,8 +50,17 @@ class PostController extends Controller
 
         //create post
         $post = Film::create([
-            'title'     => $request->title,
-            'content'   => $request->content
+            'adult'     => $request->adult,
+            'backdrop_path'   => $request->backdrop_path,
+            'genre_ids'   => $request->genre_ids,
+            'original_id'   => $request->original_id,
+            'original_language'   => $request->original_language,
+            'original_title'   => $request->original_title,
+            'popularity'   => $request->popularity,
+            'poster_path'   => $request->poster_path,
+            'release_date'   => $request->release_date,
+            'title'   => $request->title,
+            'video'   => $request->video
         ]);
 
         //return response
@@ -57,8 +75,17 @@ class PostController extends Controller
     {
         //define validation rules
         $validator = Validator::make($request->all(), [
-            'title'     => 'required',
-            'content'   => 'required',
+            'adult'     => 'required',
+            'backdrop_path'   => 'required',
+            'genre_ids'   => 'required',
+            'original_id'   => 'required',
+            'original_language'   => 'required',
+            'original_title'   => 'required',
+            'popularity'   => 'required',
+            'poster_path'   => 'required',
+            'release_date'   => 'required',
+            'title'   => 'required',
+            'video'   => 'required'
         ]);
 
         //check if validation fails
@@ -68,8 +95,17 @@ class PostController extends Controller
 
         //create post
         $post->update([
-            'title'     => $request->title,
-            'content'   => $request->content
+            'adult'     => $request->adult,
+            'backdrop_path'   => $request->backdrop_path,
+            'genre_ids'   => $request->genre_ids,
+            'original_id'   => $request->original_id,
+            'original_language'   => $request->original_language,
+            'original_title'   => $request->original_title,
+            'popularity'   => $request->popularity,
+            'poster_path'   => $request->poster_path,
+            'release_date'   => $request->release_date,
+            'title'   => $request->title,
+            'video'   => $request->video
         ]);
 
         //return response
@@ -83,7 +119,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         //delete post by ID
-        Member::where('id', $id)->delete();
+        Film::where('id', $id)->delete();
 
         //return response
         return response()->json([
