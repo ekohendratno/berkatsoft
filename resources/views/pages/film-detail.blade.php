@@ -21,7 +21,7 @@
 
                                 <div class="col-6 col-lg-6">
                                     <div class="card mb-4">
-                                        <img alt="Peringati Hari Pahlawan Siswa Siswi SMK Antusias Ikuti Lomba Model Pahlawan" src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/ngl2FKBlU4fhbdsrtdom9LVLBXw.jpg" class="card-img-top" alt="Penjelasan Tag b:comment pada Blogger">
+                                        <img alt="{{ $film->original_title }}" src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{ $film->poster_path }}" class="card-img-top" alt="{{ $film->original_title }}">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $film->original_title }}</h5>
                                             <div>
@@ -58,7 +58,7 @@
                                                 <!-- Media object -->
                                                 <div class="d-flex">
                                                     <!-- Image -->
-                                                    <img src="https://www.themoviedb.org/t/p/w300_and_h300_bestv2/ngl2FKBlU4fhbdsrtdom9LVLBXw.jpg" alt="John Doe" class="me-3 rounded-circle" style="width: 60px; height: 60px;" />
+                                                    <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{ $film->poster_path }}" alt="John Doe" class="me-3 rounded-circle" style="width: 60px; height: 60px;" />
                                                     <!-- Body -->
                                                     <div>
                                                         <small class="text-muted">{{ $film->release_date }}</small>

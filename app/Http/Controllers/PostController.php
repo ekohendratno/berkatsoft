@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Film;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -25,10 +26,36 @@ class PostController extends Controller
     public function create()
     {
 
-        $data = Http::asJson()->get(config('services.tmdb.endpoint').'movie/popular?api_key='.config('services.tmdb.api'));
+        $response = Http::get(config('services.tmdb.endpoint').'movie/popular', [
+            'api_key' => config('services.tmdb.api')
+        ]);
 
+        if($response->ok()) {
+            $data = $response->json();
 
-        echo $data;
+            foreach ($data['results'] as $d) {
+
+                Film::create([
+                    'adult' => $d['adult'],
+                    'backdrop_path' => $d['backdrop_path'],
+                    'genre_ids' => json_encode( $d['genre_ids'] ),
+                    'original_id' => $d['id'],
+                    'original_language' => $d['original_language'],
+                    'original_title' => $d['original_title'],
+                    'overview' => $d['overview'],
+                    'popularity' => $d['popularity'],
+                    'poster_path' => $d['poster_path'],
+                    'release_date' => $d['release_date'],
+                    'title' => $d['title'],
+                    'video' => $d['video'],
+                    'vote_average' => $d['vote_average'],
+                    'vote_count' => $d['vote_count'],
+                ]);
+
+            }
+        } else {
+            echo "Failed to fetch popular movies.";
+        }
     }
 
     /**

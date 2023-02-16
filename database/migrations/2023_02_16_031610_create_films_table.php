@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('adult');
             $table->text('backdrop_path');
             $table->text('genre_ids');
-            $table->strtexting('original_id');
+            $table->text('original_id');
             $table->text('original_language');
             $table->text('original_title');
             $table->text('overview');
@@ -29,6 +29,8 @@ return new class extends Migration
             $table->text('video');
             $table->text('vote_average');
             $table->text('vote_count');
+            $table->text('updated_at');
+            $table->text('created_at');
         });
     }
 

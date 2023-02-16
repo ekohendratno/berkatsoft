@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 16 Feb 2023 pada 05.45
+-- Waktu pembuatan: 16 Feb 2023 pada 07.24
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.0
 
@@ -45,29 +45,37 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `films` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `adult` varchar(255) NOT NULL,
-  `backdrop_path` varchar(255) NOT NULL,
-  `genre_ids` varchar(255) NOT NULL,
-  `original_id` varchar(255) NOT NULL,
-  `original_language` varchar(255) NOT NULL,
-  `original_title` varchar(255) NOT NULL,
+  `adult` text NOT NULL,
+  `backdrop_path` text NOT NULL,
+  `genre_ids` text NOT NULL,
+  `original_id` text NOT NULL,
+  `original_language` text NOT NULL,
+  `original_title` text NOT NULL,
   `overview` text NOT NULL,
-  `popularity` varchar(255) NOT NULL,
-  `poster_path` varchar(255) NOT NULL,
-  `release_date` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `video` varchar(255) NOT NULL,
-  `vote_average` varchar(255) NOT NULL,
-  `vote_count` varchar(255) NOT NULL
+  `popularity` text NOT NULL,
+  `poster_path` text NOT NULL,
+  `release_date` text NOT NULL,
+  `title` text NOT NULL,
+  `video` text NOT NULL,
+  `vote_average` text NOT NULL,
+  `vote_count` text NOT NULL,
+  `updated_at` text NOT NULL,
+  `created_at` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data untuk tabel `films`
+-- Struktur dari tabel `members`
 --
 
-INSERT INTO `films` (`id`, `adult`, `backdrop_path`, `genre_ids`, `original_id`, `original_language`, `original_title`, `overview`, `popularity`, `poster_path`, `release_date`, `title`, `video`, `vote_average`, `vote_count`) VALUES
-(1, 'false', '/xDMIl84Qo5Tsu62c9DGWhmPI67A.jpg', '[\r\n        28,\r\n        12,\r\n        878\r\n      ]', '505642', 'en', 'lack Panther: Wakanda Forever', 'Queen Ramonda, Shuri, M’Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T’Challa’s death.  As the Wakandans strive to embrace their next chapter, the heroes must band together with the help of War Dog Nakia and Everett Ross and forge a new path for the kingdom of Wakanda.', '4646.778', '/sv1xJUazXeYqALzczSZ3O6nkH75.jpg', '2022-11-09', 'Black Panther: Wakanda Forever', 'false', '7.5', '3132'),
-(2, 'false', '/xDMIl84Qo5Tsu62c9DGWhmPI67A.jpg', '[\r\n        28,\r\n        12,\r\n        878\r\n      ]', '505643', 'en', 'lack Panther: Wakanda Forever', 'Queen Ramonda, Shuri, M’Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T’Challa’s death.  As the Wakandans strive to embrace their next chapter, the heroes must band together with the help of War Dog Nakia and Everett Ross and forge a new path for the kingdom of Wakanda.', '4646.778', '/sv1xJUazXeYqALzczSZ3O6nkH75.jpg', '2022-11-09', 'Black Panther: Wakanda Forever', 'false', '7.5', '3132');
+CREATE TABLE `members` (
+  `member_id` bigint(20) UNSIGNED NOT NULL,
+  `member_name` varchar(255) NOT NULL,
+  `member_password` varchar(255) NOT NULL,
+  `member_email` varchar(255) NOT NULL,
+  `member_last_active` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -90,7 +98,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2023_02_16_031610_create_films_table', 1);
+(5, '2023_02_15_032127_create_members_table', 1),
+(6, '2023_02_16_031610_create_films_table', 1);
 
 -- --------------------------------------------------------
 
@@ -158,6 +167,12 @@ ALTER TABLE `films`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `members`
+--
+ALTER TABLE `members`
+  ADD PRIMARY KEY (`member_id`);
+
+--
 -- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
@@ -198,13 +213,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `films`
 --
 ALTER TABLE `films`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `members`
+--
+ALTER TABLE `members`
+  MODIFY `member_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`

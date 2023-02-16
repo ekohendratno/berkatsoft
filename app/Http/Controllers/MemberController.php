@@ -14,16 +14,33 @@ class MemberController extends Controller
     public function signin(Request $request)
     {
         $request->validate([
-            'member_email' => 'required|email',
+            'member_email' => 'required',
+            'member_password' => 'required',
+        ]);
+        if (Auth::attempt(['member_email' => $request->member_email, 'member_password' => $request->member_password])) {
+            $request->session()->regenerate();
+            return redirect()->intended('/');
+        }
+
+        return back()->withErrors([
+            'member_password' => 'Wrong username or password',
+        ]);
+    }
+
+    public function daftar(Request $request)
+    {
+        $request->validate([
+            'member_email' => 'required',
             'member_password' => 'required',
         ]);
 
-        $credentials = $request->only('member_email', 'member_password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')->withSuccess('Signed in');
-        }
+        $user = new Member([
+            'member_email' => $request->username,
+            'member_password' => $request->password,
+        ]);
+        $user->save();
 
-        return redirect("/member/index")->withError('Login details are not valid');
+        return redirect()->route('member')->with('success', 'Registration success. Please login!');
     }
 
     public function signout()

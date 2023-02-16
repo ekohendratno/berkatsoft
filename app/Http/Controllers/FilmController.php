@@ -38,7 +38,7 @@ class FilmController extends Controller
 
 
             $film = Film::where('original_id', $id)->first();
-            $films = Film::orderBy('release_date')->get();
+            $films = Film::orderBy('release_date')->limit(10)->get();
 
             return view('pages.film-detail',compact('film','films'));
 
